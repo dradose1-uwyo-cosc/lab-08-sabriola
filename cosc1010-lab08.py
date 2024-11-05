@@ -68,6 +68,9 @@ while True:
     b = input("Please input the y-intercept: ")
     lower_bound = input("Please input a lower bound for x: ")
     upper_bound = input("Please input an upper bound for x: ")
+    
+    if m.lower == 'exit' and b.lower == 'exit' and lower_bound.lower == 'exit' and upper_bound == 'exit':
+        break
 
     m = adv_convert(m)
     b = adv_convert(b)
@@ -75,6 +78,7 @@ while True:
     upper_bound = adv_convert(upper_bound)
     y = slope_intercept(m, b, lower_bound, upper_bound)
     
+    print(f"The list of all values of y for given x range is: {y}")
     print("*" * 75)
 
 
