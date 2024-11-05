@@ -3,18 +3,33 @@
 #Submission Date: 11/10/2024
 #Lab 08
 #Lab Section: 16
-#Sources: Lecture 11
+#Sources: Lecture 11 and 12
 
 # Write a function that will properly check strings to see if they are an int or float, and convert them if so
 # If they can't be converted return false
 # Other wise return the converted int or float 
 # Floats should only have one decimal point in them 
 
-def check_string(valid):
-    if valid.isdigit():
-        return int(valid)
-    if valid.count('.') == 1:
-        return 
+def adv_convert(num):
+    negative = False
+    if num[0] == "-":
+        negative = True
+        num = num.replace("-", "")
+    if "." in num:
+        numsplit = num.split(".") #[somenumber, somenumber]
+        if len(numsplit) == 2 and numsplit[0].isdigit() and numsplit[1].isdigit():
+            if negative:
+                return -1*float(num)
+            else:
+                return float(num)
+        else:
+            return False
+    elif num.isdigit():
+        if negative:
+            return -1*int(num)
+        else:
+            return int(num)
+    return False
 
 print("*" * 75)
 
@@ -39,7 +54,28 @@ print("*" * 75)
 # Remember all inputs are strings, but the function needs ints or floats
 # Call your function and print the resulting list
 
-print("*" * 75)
+def slope_intercept(m, b, lower_bound_x, upper_bound_x):
+    y =[]
+    if type(lower_bound_x) is int and type(upper_bound_x) is int and lower_bound_x <= upper_bound_x:
+        for x in range(lower_bound_x, upper_bound_x+1):
+            y.append((m*x)+b)
+    else:
+        return False
+    return y
+    
+while True:
+    m = input("Please input the slope of the line: ")
+    b = input("Please input the y-intercept: ")
+    lower_bound = input("Please input a lower bound for x: ")
+    upper_bound = input("Please input an upper bound for x: ")
+
+    m = adv_convert(m)
+    b = adv_convert(b)
+    lower_bound = adv_convert(lower_bound)
+    upper_bound = adv_convert(upper_bound)
+    y = slope_intercept(m, b, lower_bound, upper_bound)
+    
+    print("*" * 75)
 
 
 # Write a function to solve the quadratic formula
