@@ -62,16 +62,22 @@ def slope_intercept(m, b, lower_bound_x, upper_bound_x):
     else:
         return False
     return y
-    
-while True:
-    m = input("Please input the slope of the line: ")
-    b = input("Please input the y-intercept: ")
-    lower_bound = input("Please input a lower bound for x: ")
-    upper_bound = input("Please input an upper bound for x: ")
-    
-    if m.lower == 'exit' and b.lower == 'exit' and lower_bound.lower == 'exit' and upper_bound == 'exit':
-        break
 
+while True:
+    print('Please enter the following or type exit at any time')
+    m = input("Please input the slope of the line: ")
+    if m.lower() == 'exit':
+        break
+    b = input("Please input the y-intercept: ")
+    if b.lower() == 'exit':
+        break
+    lower_bound = input("Please input a lower bound for x: ")
+    if lower_bound.lower() == 'exit':
+        break
+    upper_bound = input("Please input an upper bound for x: ")
+    if upper_bound.lower() == 'exit':
+        break
+    
     m = adv_convert(m)
     b = adv_convert(b)
     lower_bound = adv_convert(lower_bound)
@@ -81,7 +87,6 @@ while True:
     print(f"The list of all values of y for given x range is: {y}")
     print("*" * 75)
 
-
 # Write a function to solve the quadratic formula
 # https://en.wikipedia.org/wiki/Quadratic_formula
 # Accept inputs for a, b, c
@@ -89,3 +94,44 @@ while True:
 # Create a loop like above to prompt the user for input for the three values
 # Create a second function that just does the square root operation 
     # If the number you are trying to take the square root of is negative, return null
+
+def discriminant(a, b, c):
+    if type(a) is int and type(b) is int and type(c) is int:
+        x = (b**2) - (4*a*c)
+        if x < 0:
+            return False
+        else:
+            return x**0.5
+    
+def quadratic(a, b, c):
+    if type(a) is int and type(b) is int and type(c) is int:
+        x = discriminant(a, b, c)
+        if x == False:
+            print('Result of square root is negative')
+            print (x)
+            return(None, None)
+        else:
+            x_1 = (-b + x)/(2*a)
+            x_2 = (-b - x)/(2*a)
+            return (x_1, x_2)
+    else:
+        return (None, None)
+
+while True:
+    print('Please enter the following or type exit at any time')
+    a = input("Please input the value for a: ")
+    if a.lower() == 'exit':
+        break
+    b = input("Please input the value for b: ")
+    if b.lower() == 'exit':
+        break
+    c = input("Please input the value for c: ")
+    if c.lower == 'exit':
+        break
+
+    a = adv_convert(a)
+    b = adv_convert(b)
+    c = adv_convert(c)
+
+    x_1, x_2 = quadratic(a, b, c)
+    print (f"The solutions are: x_1 = {x_1} and x_2 = {x_2} ")
